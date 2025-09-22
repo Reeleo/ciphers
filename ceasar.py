@@ -21,8 +21,11 @@ def setUp(cipher):
     valid = False
     while not valid:
         ascii = ord(cipher[counter])
-        if ascii < 97 or ascii > 123:
-            cipher.pop(counter)
+        if cipher[counter] != " ":
+            if ascii < 97 or ascii > 123:
+                cipher.pop(counter)
+            else:
+                counter += 1
         else:
             counter += 1
         if counter == len(cipher):
