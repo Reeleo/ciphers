@@ -1,5 +1,7 @@
 
-
+FREQ = {"a":8.2,"b":1.5,"c":2.8,"d":4.3,"e":12.7,"f":2.2,"g":2.0,"h":6.1,"i":7.0,"j":0.15,
+            "k":0.77,"l":4.0,"m":2.4,"n":6.7,"o":7.5,"p":1.9,"q":0.095,"r":6.0,"s":6.3,"t":9.1,
+            "u":2.8,"v":0.98,"w":2.4,"x":0.15,"y":2.0,"z":0.074}
 
 def stringToArray(string):
     array = []
@@ -30,20 +32,15 @@ def setUp(cipher):
             counter += 1
         if counter == len(cipher):
             valid = True
-    cipher = arrayToString(cipher)
     return cipher
 
 
 
 def dictionary(txt):
     diff = 0
-    engdict = {"a":8.2,"b":1.5,"c":2.8,"d":4.3,"e":12.7,"f":2.2,"g":2.0,"h":6.1,"j":0.15,"k":0.77,
-               "l":4.0,"m":2.4,"n":6.7,"o":7.5,"p":1.9,"q":0.095,"r":6.0,"s":6.3,"t":9.1,"u":2.8,
-               "v":0.98,"w":2.4,"x":0.15,"y":2.0,"z":0.074}
-    newdict = {"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"j":0,"k":0,
-               "l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,"u":0,
-               "v":0,"w":0,"x":0,"y":0,"z":0}  
-    
+    newdict = {"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,
+               "k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,
+               "u":0,"v":0,"w":0,"x":0,"y":0,"z":0}   
     for char in range(len(txt)):
         for letter in newdict:
             if txt[char] == letter:
@@ -54,9 +51,128 @@ def dictionary(txt):
     
     for j in newdict:
         if newdict[j] > 0:
-            diff += abs(engdict[j] - newdict[j])
+            diff += abs(FREQ[j] - newdict[j])
     return round(diff,2)
 
+
+
+def frequencyLetters(txt):
+    letters = {"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,
+               "k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,
+               "u":0,"v":0,"w":0,"x":0,"y":0,"z":0}  
+    for char in range(len(txt)):
+        for letter in letters:
+            if txt[char] == letter:
+                letters[letter] += 1
+                break
+    for i in letters:
+        letters[i] = round(letters[i] / len(txt),2)
+    return letters
+    
+
+def frequencyWords(txt):
+    words = {}
+    word = ""
+    for i in range(len(txt)):
+        if txt[i] != " ":
+            word += txt[i] 
+        else:
+            if word in words:
+                words[word] += 1
+            else:
+                words.update({word:1})
+            word = ""
+    return words
+
+
+
+
+
+def findKey(cipher,type):
+    key = {"a":"a","b":"b","c":"c","d":"d","e":"e","f":"f","g":"g","h":"h","i":"i","j":"j","k":"k",
+        "l":"l","m":"m","n":"n","o":"o","p":"p","q":"q","r":"r","s":"s","t":"t","u":"u",
+        "v":"v","w":"w","x":"x","y":"y","z":"z"}  
+    letters = frequencyLetters(cipher)
+    words = frequencyWords(cipher)
+
+    if type == "l":
+        print(letters)
+    else:
+        print(words)
+
+    if type == "l":
+        orderDict = sorted(FREQ.items(), key=lambda x:x[1], reverse=True)
+        orderTxt = dict(sorted(letters.items(), key=lambda x:x[1], reverse=True))
+        print(orderDict)
+        print(orderTxt)
+        count = 0
+        for i in orderTxt:
+            oldletter = i
+            newletter = orderDict[count][0]
+            count += 1
+            key[newletter] = oldletter
+        return key
+        
+    
+    if type == "w":
+        freq_a = 0
+        freq_i = 0
+        freq_the = 0
+        suspect_the = "the"
+        suspect_a = "a"
+        suspect_i = "i"
+        for item in words:
+            if len(item) == 1:
+                if words[item] > freq_i:
+                    suspect_a = suspect_i
+                    suspect_i = item
+                    freq_a = freq_i
+                    freq_i = words[item]
+                elif words[item] > freq_a and words[item] <= freq_i:
+                    suspect_a = item
+                    freq_a = words[item]
+                #pepe
+            elif len(item) == 3:
+                if words[item] > freq_the:
+                    suspect_the = item
+                    freq_the = words[item]
+        print(suspect_the, freq_the, ": suspected the")
+        print(suspect_a, freq_a, ": suspected a")
+        print(suspect_i, freq_i, ": suspected i")
+        key[suspect_a] = "a"
+        key["a"] = suspect_a
+        key[suspect_the[0]] = "t"
+        key["t"] = suspect_the[0]
+        key[suspect_the[1]] = "h"
+        key["h"] = suspect_the[1]
+        key[suspect_the[2]] = "e"
+        key["e"] = suspect_the[2]
+        return key
+
+
+
+def substitution(cipher):
+    again = True
+    type = input("words or letters ")
+    while again:
+        key = findKey(cipher,type)
+        print("KEY: ",key)
+        originalDiff = dictionary(cipher)
+        for char in range(len(cipher)):
+            if cipher[char] != " ":
+                i = cipher[char]
+                cipher[char] = key[i]
+
+        print(dictionary(cipher),"from",originalDiff)
+        print(arrayToString(cipher))
+        y = input("again? ")
+        if y == "n":
+            again = False
+        elif y == "s":
+            if type == "w":
+                type = "l"
+            else:
+                type = "w"
 
 
 
@@ -65,30 +181,26 @@ def dictionary(txt):
 
 
 def ceasar(cipher):
-    array = []
     diffs = []
-    cipher.lower()
-    array = stringToArray(cipher)
     for shift in range(26):
-        for i in range(len(array)):
-            if array[i] != " ":
-                ascii = ord(array[i])
+        for i in range(len(cipher)):
+            if cipher[i] != " ":
+                ascii = ord(cipher[i])
                 if ascii+1 >= 123:
                     ascii = 96
-                array[i] = chr(ascii+1)
-        #print(array,dictionary(array),shift,"\n")
+                cipher[i] = chr(ascii+1)
+        #print(arrayToString(array),dictionary(array),shift,"\n")
         shifted = []
-        for j in range(len(array)):
-            shifted.append(array[j])
-        diffs.append([shifted,dictionary(array),shift])
+        for j in range(len(cipher)):
+            shifted.append(cipher[j])
+        diffs.append([shifted,dictionary(cipher),shift])
     pointer = 0
     for j in range(len(diffs)):
         if diffs[j][1] > diffs[pointer][1]:
             pointer = j
     diffs[pointer][0] = arrayToString(diffs[pointer][0])
+    print(diffs[pointer])
     return diffs[pointer]
-
-
 
 
 
@@ -105,5 +217,6 @@ b = "EDCT OEEW VAKUE DZK U OUXX BAHJ JOA ZEO KACLYEZJH NAG QAL JA KECUBTEG. JTEQ
 a = setUp(a)
 b = setUp(b)
 
-print(ceasar(a))
+#ceasar(a)
+# substitution(b)
 
