@@ -226,7 +226,7 @@ twoB = setUp(twoB)
 
 
 #ceasar(oneA)
-ceasar(twoA)
+substitution(twoA)
 
 #ceasar(a)
 # substitution(b)
