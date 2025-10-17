@@ -100,6 +100,52 @@ def substitution(cipher,k):
 
 
 
+def vigenere(cipher):
+    k = "hello"
+    key = []
+    for i in range(len(k)):
+        key.append(ord(k[i]) - 97)
+    print(key)
+    pointer = 0
+    for j in range(len(cipher)):
+        if cipher[j] != " ":
+            ascii = ord(cipher[j])
+            if ascii+key[pointer] >= 123:
+                diff = ascii+key[pointer] - 122
+                ascii = 96 + diff
+            else:
+                ascii += key[pointer]
+            cipher[j] = chr(ascii)
+            pointer += 1
+            if pointer >= len(key):
+                pointer = 0
+    print(cipher)
+
+
+def vAutokey(cipher):
+    k = "hello"
+    key = []
+    for i in range(len(k)):
+        key.append(ord(k[i]) - 97)
+    print(key)
+    pointer = 0
+    for j in range(len(cipher)):
+        if cipher[j] != " ":
+            ascii = ord(cipher[j])
+            key.append(ascii-97)
+            if ascii+key[pointer] >= 123:
+                diff = ascii+key[pointer] - 122
+                ascii = 96 + diff
+            else:
+                ascii += key[pointer]
+            cipher[j] = chr(ascii)
+            pointer += 1
+    print(key)
+    print(cipher)
+            
+
+
+
 
 
 def ceasar(cipher):
