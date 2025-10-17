@@ -36,6 +36,8 @@ def setUp(cipher):
 
 
 
+
+
 def dictionary(txt):
     diff = 0
     newdict = {"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,
@@ -67,7 +69,8 @@ def frequencyLetters(txt):
                 break
     for i in letters:
         letters[i] = round(letters[i] / len(txt),2)
-    return letters
+    letterSort = dict(sorted(letters.items(), key=lambda x:x[1], reverse=True))
+    return letterSort
     
 
 def frequencyWords(txt):
@@ -82,16 +85,14 @@ def frequencyWords(txt):
             else:
                 words.update({word:1})
             word = ""
-    return words
+    wordSort = dict(sorted(words.items(), key=lambda x:x[1], reverse=True))
+    return wordSort
 
 
 
 
 
-def findKey(cipher,type):
-    key = {"a":"a","b":"b","c":"c","d":"d","e":"e","f":"f","g":"g","h":"h","i":"i","j":"j","k":"k",
-        "l":"l","m":"m","n":"n","o":"o","p":"p","q":"q","r":"r","s":"s","t":"t","u":"u",
-        "v":"v","w":"w","x":"x","y":"y","z":"z"}  
+def findKey(cipher,type,key):
     letters = frequencyLetters(cipher)
     words = frequencyWords(cipher)
 
@@ -141,21 +142,28 @@ def findKey(cipher,type):
         print(suspect_i, freq_i, ": suspected i")
         key[suspect_a] = "a"
         key["a"] = suspect_a
+        key[suspect_i] = "i"
+        key["i"] = suspect_i
         key[suspect_the[0]] = "t"
         key["t"] = suspect_the[0]
         key[suspect_the[1]] = "h"
         key["h"] = suspect_the[1]
         key[suspect_the[2]] = "e"
         key["e"] = suspect_the[2]
+        print(key)
         return key
 
 
 
-def substitution(cipher):
+def substitution(cipher,k):
     again = True
-    type = input("words or letters ")
+    #type = input("words or letters ")
+    print(frequencyWords(cipher))
+    print("\n")
+    print(frequencyLetters(cipher))
     while again:
-        key = findKey(cipher,type)
+        #key = findKey(cipher,type,k)
+        key = k
         print("KEY: ",key)
         originalDiff = dictionary(cipher)
         for char in range(len(cipher)):
@@ -165,14 +173,19 @@ def substitution(cipher):
 
         print(dictionary(cipher),"from",originalDiff)
         print(arrayToString(cipher))
-        y = input("again? ")
-        if y == "n":
-            again = False
-        elif y == "s":
-            if type == "w":
-                type = "l"
-            else:
-                type = "w"
+        print("\n")
+        print(frequencyWords(cipher))
+        print("\n")
+        print(frequencyLetters(cipher))
+        again = False
+        #y = input("again? ")
+        # if y == "n":
+        #     again = False
+        # elif y == "s":
+        #     if type == "w":
+        #         type = "l"
+        #     else:
+        #         type = "w"
 
 
 
@@ -192,15 +205,15 @@ def ceasar(cipher):
         shifted = []
         for j in range(len(cipher)):
             shifted.append(cipher[j])
-        print(arrayToString(shifted),dictionary(shifted))
+        print(arrayToString(shifted),dictionary(shifted),shift)
         diffs.append([shifted,dictionary(cipher),shift])
     pointer = 0
     for j in range(len(diffs)):
         if diffs[j][1] > diffs[pointer][1]:
             pointer = j
     diffs[pointer][0] = arrayToString(diffs[pointer][0])
+    print("\n")
     print(diffs[pointer])
-    return diffs[pointer]
 
 
 
@@ -225,8 +238,11 @@ twoA = setUp(twoA)
 twoB = setUp(twoB)
 
 
+twoAkey = {'a': 'h', 'b': 'b', 'c': 'c', 'd': 'i', 'e': 'e', 'f': 'a', 'g': 'g', 'h': 'f', 'i': 'i', 'j': 'k', 'k': 't', 'l': 'l', 'm': 'm', 'n': 's', 'o': 'd', 'p': 'p', 'q': 'q', 'r': 'e', 's': 'n', 't': 't', 'u': 'n', 'v': 'o', 'w': 'w', 'x': 'x', 'y': 'y', 'z': 'z'}
+
 #ceasar(oneA)
-substitution(twoA)
+substitution(twoA,twoAkey)
+
 
 #ceasar(a)
 # substitution(b)
