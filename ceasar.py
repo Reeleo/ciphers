@@ -189,7 +189,7 @@ def ceasar(cipher):
                 if ascii+1 >= 123:
                     ascii = 96
                 cipher[i] = chr(ascii+1)
-        print(arrayToString(array),dictionary(array),shift,"\n")
+        # print(arrayToString(array),dictionary(array),shift,"\n")
         shifted = []
         for j in range(len(cipher)):
             shifted.append(cipher[j])
