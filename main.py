@@ -1,14 +1,13 @@
 import ciphers
 import solve
  
-threeAkey = {"a":"a", "b":"i", "c":"c", "d":"d", "e":"e", "f":"m", "g":"n",
-           "h":"a", "i":"o", "j":"j", "k":"k", "l":"l", "m":"d", "n":"n",
-           "o":"e", "p":"d", "q":"t", "r":"r", "s":"u", "t":"t", "u":"w",
-           "v":"v", "w":"w", "x":"x", "y":"g", "z":"h"}
+threeBkey = [2,3,4,0,1]
 
-solve.substitution(ciphers.threeA,threeAkey)
+print(ciphers.threeB)
+solve.transposition(ciphers.threeB,threeBkey)
 
 #solve.substitution(ciphers.twoB,twoBkey)
+
 
 
 
