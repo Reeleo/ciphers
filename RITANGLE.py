@@ -1,4 +1,5 @@
-aa = []
+'''
+aaa = []
 aaa.append(2)
 print(aaa)
 list = []
@@ -21,3 +22,21 @@ for a in range (6):
         list.pop()
     list.pop()
 print(count)
+'''
+combo = []
+combos = []
+for i in range (25):
+    combo.append(i)
+    for j in range (61):
+        combo.append(j)
+        for k in range (61):
+            combo.append(k)
+            # print(combo)
+            if combo[0]-combo[1] == combo[1]-combo[2]:
+                combos.append(combo)
+                print(combo)
+            combo.pop()
+        combo.pop()
+    combo.pop()
+
+print(combos)
