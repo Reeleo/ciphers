@@ -1,3 +1,5 @@
+import math
+
 '''
 aaa = []
 aaa.append(2)
@@ -25,6 +27,7 @@ print(count)
 '''
 combo = []
 combos = []
+answers = []
 for i in range (25):
     combo.append(i)
     for j in range (61):
@@ -32,11 +35,23 @@ for i in range (25):
         for k in range (61):
             combo.append(k)
             # print(combo)
-            if combo[0]-combo[1] == combo[1]-combo[2]:
-                combos.append(combo)
-                print(combo)
+            if combo[0]-combo[1] == combo[1]-combo[2] and combo[1]-combo[2] != 0:
+                # print(combo)
+                total = combo[0] * 3600 + combo[1] * 60 + combo[2]
+                hour = total/120 % 360
+                min = total/10 % 360
+                sec= total*6 % 360
+                ans = abs(hour - min) + abs(min - sec) + abs(sec - hour)
+                answers.append(ans)
+                if ans == 8.600000000000364:
+                    print(combo)
             combo.pop()
         combo.pop()
     combo.pop()
+# print(answers)
+smallest = 99999
+for ans in answers:
+    if ans < smallest:
+        smallest = ans
 
-print(combos)
+        print(smallest)
