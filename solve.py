@@ -145,6 +145,24 @@ def vAutokey(cipher):
             
 
 
+def transposition(cipher,key):
+    pointer = 0
+    splitcipher = [[]]
+    for i in range(len(cipher)):
+        if cipher[i] != " ":
+            splitcipher[pointer].append(cipher[i])
+            if len(splitcipher[pointer]) == len(key):
+                splitcipher.append([])
+                pointer += 1
+    transposed = ""
+    for j in range(len(splitcipher)):
+        newgroup = ""
+        if len(splitcipher[j]) == len(key):
+            for k in range(len(key)):
+                newgroup += splitcipher[j][key[k]]
+            transposed += newgroup
+    print(transposed)
+
 
 
 
