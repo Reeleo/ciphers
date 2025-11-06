@@ -1,6 +1,7 @@
 import convert
 import freq
 
+# guesses some letters for you for substitution but not very helpful
 def findKey(cipher,type,key):
     letters = convert.frequencyLetters(cipher)
     words = convert.frequencyWords(cipher)
@@ -63,7 +64,7 @@ def findKey(cipher,type,key):
         return key
 
 
-
+# requires alphabet key (function findkey is to help but not very helpful) trial and error guessing time
 def substitution(cipher,k):
     again = True
     #type = input("words or letters ")
@@ -99,7 +100,7 @@ def substitution(cipher,k):
 
 
 
-
+# the vigenere chart shift (not done in challenge yet)
 def vigenere(cipher):
     k = "hello"
     key = []
@@ -121,7 +122,7 @@ def vigenere(cipher):
                 pointer = 0
     print(cipher)
 
-
+# vigenere but auto key (is made from the plain/cipher? text)
 def vAutokey(cipher):
     k = "hello"
     key = []
@@ -144,7 +145,8 @@ def vAutokey(cipher):
     print(cipher)
             
 
-
+# ciphertxt = abcde, key = [5,4,3,2,1], plaintxt = edcba (will have a similar dictvalue to english)
+# solves if the right key is inputed
 def transposition(cipher,key):
     pointer = 0
     splitcipher = [[]]
@@ -165,7 +167,7 @@ def transposition(cipher,key):
 
 
 
-
+# finds the most likely shift and solves
 def ceasar(cipher):
     diffs = []
     for shift in range(26):

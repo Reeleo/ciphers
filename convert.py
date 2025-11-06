@@ -9,3 +9,5 @@ def arrayToString(array):
     for item in range(len(array)):
         string += array[item]
     return string
+
+# for solving use

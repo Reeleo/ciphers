@@ -1,5 +1,6 @@
 import convert
 
+# set up removes punctuation and converts all to lowercase for ease of use
 def setUp(cipher):
     cipher = cipher.lower()
     cipher = convert.stringToArray(cipher)
