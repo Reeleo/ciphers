@@ -1,10 +1,10 @@
 import ciphers
-import solve
+import freq
  
 threeBkey = [2,3,4,0,1]
 
-print(ciphers.threeB)
-solve.transposition(ciphers.threeB,threeBkey)
+print(ciphers.fourA)
+print(freq.freqLetters(ciphers.fourB))
 
 #solve.substitution(ciphers.twoB,twoBkey)
 

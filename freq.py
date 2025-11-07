@@ -4,7 +4,7 @@ FREQ = {"a":8.2,"b":1.5,"c":2.8,"d":4.3,"e":12.7,"f":2.2,"g":2.0,"h":6.1,"i":7.0
 
 
 
-
+# compare to english dictionary
 def dictValue(txt):
     diff = 0
     newdict = {"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,
@@ -23,7 +23,7 @@ def dictValue(txt):
             diff += abs(FREQ[j] - newdict[j])
     return round(diff,2)
 
-
+# freq of letters for shift and substitution
 def freqLetters(txt):
     letters = {"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,
                "k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,
@@ -38,7 +38,7 @@ def freqLetters(txt):
     letterSort = dict(sorted(letters.items(), key=lambda x:x[1], reverse=True))
     return letterSort
     
-
+# freq od words for shift and substitution
 def freqWords(txt):
     words = {}
     word = ""
