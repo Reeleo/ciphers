@@ -82,7 +82,7 @@ def substitution(cipher,k):
                 cipher[char] = key[i]
 
         print(freq.dictValue(cipher),"from",originalDiff)
-        print(convert.arrayToString(cipher))
+        print(convert.arrayToString(cipher,True))
         print("\n")
         print(freq.freqWords(cipher))
         print("\n")
@@ -97,6 +97,23 @@ def substitution(cipher,k):
         #     else:
         #         type = "w"
 
+# substitution when the spaces are jumbled
+def sSubstitution(cipher,k):
+    print(freq.freqWords(cipher))
+    print("\n")
+    print(freq.freqLetters(cipher))
+    key = k
+    print("KEY: ",key)
+    originalDiff = freq.dictValue(cipher)
+    for char in range(len(cipher)):
+        if cipher[char] != " ":
+            i = cipher[char]
+            cipher[char] = key[i]
+
+    print(freq.dictValue(cipher),"from",originalDiff)
+    print(convert.arrayToString(cipher,False))
+    print("\n")
+    print(freq.freqLetters(cipher))
 
 
 
@@ -181,12 +198,12 @@ def ceasar(cipher):
         for j in range(len(cipher)):
             shifted.append(cipher[j])
         print("\n")
-        print(convert.arrayToString(shifted),freq.dictValue(shifted),shift)
+        print(convert.arrayToString(shifted,True),freq.dictValue(shifted),shift)
         diffs.append([shifted,freq.dictValue(cipher),shift])
     pointer = 0
     for j in range(len(diffs)):
         if diffs[j][1] > diffs[pointer][1]:
             pointer = j
-    diffs[pointer][0] = convert.arrayToString(diffs[pointer][0])
+    diffs[pointer][0] = convert.arrayToString(diffs[pointer][0],True)
     print("\n")
     print(diffs[pointer])
