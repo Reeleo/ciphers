@@ -64,7 +64,7 @@ def rearrange(list,key):
         for i in range (len(key)):
             pos = key[i]
             message += list[j*len(key)+pos] 
-    print('why',message)
+    # print('why',message)
 
 def create_rearragements(list,key_length):
     key = []
@@ -124,7 +124,10 @@ def letter_frequency(list):
     print(key)
         # print(letter,':',frequency)
 print(letter_frequency(make_list(message4a)))
-message = substitute(make_list(message4a),[['j', 'z'], ['h', 'q'], ['a', 'j'], ['t', 'x'], ['u', 'k'], ['f', 'v'], ['l', 'b'], ['z', 'p'], ['g', 'g'], ['m', 'y'], ['q', 'f'], ['p', 'm'], ['w', 'w'], ['i', 'c'], ['e', 'u'], ['n', 'l'], ['v', 'd'], ['r', 'r'], ['c', 'h'], ['x', 's'], ['b', 'n'], ['s', 'i'], ['k', 'o'], ['y', 'a'], ['d', 't'], ['o', 'e']])
+message = substitute(make_list(message4a),[['j', 'z'], ['h', 'q'], ['a', 'j'], ['t', 'x'], ['u', 'k'], ['f', 'v'], ['l', 'b'],
+                                            ['z', 'p'], ['g', 'w'], ['m', 'c'], ['q', 'g'], ['p', 'm'], ['w', 'm'], ['i', 'y'],
+                                              ['e', 'u'], ['n', 'd'], ['v', 'l'], ['r', 'h'], ['c', 's'], ['x', 'n'], ['b', 'r'],
+                                                ['s', 'i'], ['k', 'a'], ['y', 'o'], ['d', 't'], ['o', 'e']])
 shortened4a = make_list('WCLEONDANLLENBCIWUHTOLWITTAHAWEYASMUHIASOMTENNEOLISFCAUNDETTENOHIYOSSATYDEONDCHEERAGIWIFRTBEAMOSCOHHIHTOSYETACAUPENROPHTROTHRAGHOGOSTAMIWOFISO')
 create_rearragements(shortened4a, 6)
 
