@@ -118,8 +118,7 @@ def sSubstitution(cipher,k):
 
 
 # the vigenere chart shift (not done in challenge yet)
-def vigenere(cipher):
-    k = "hello"
+def vigenere(cipher,k):
     key = []
     for i in range(len(k)):
         key.append(ord(k[i]) - 97)
@@ -137,7 +136,7 @@ def vigenere(cipher):
             pointer += 1
             if pointer >= len(key):
                 pointer = 0
-    print(cipher)
+    print(convert.arrayToString(cipher,True)[:10])
 
 # vigenere but auto key (is made from the plain/cipher? text)
 def vAutokey(cipher):
