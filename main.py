@@ -2,20 +2,26 @@ import ciphers
 import solve
 import freq
  
-fourBkey = {"a":"a", "b":"y", "c":"c", "d":"a", "e":"d", "f":"e", "g":"c",
-        "h":"f", "i":"g", "j":"h", "k":"i", "l":"j", "m":"k", "n":"l",
-        "o":"b", "p":"m", "q":"n", "r":"o", "s":"p", "t":"y", "u":"r",
-        "v":"s", "w":"t", "x":"u", "y":"v", "z":"w"} 
+
+fiveBkey = {"a":"a", "b":"b", "c":"c", "d":"r", "e":"e", "f":"f", "g":"g",
+        "h":"h", "i":"d", "j":"j", "k":"k", "l":"y", "m":"m", "n":"n",
+        "o":"e", "p":"p", "q":"q", "r":"r", "s":"s", "t":"t", "u":"u",
+        "v":"v", "w":"m", "x":"x", "y":"y", "z":"z"} 
+
+fiveBkey = {"a":"a", "b":"b", "c":"c", "d":"d", "e":"e", "f":"f", "g":"g",
+        "h":"h", "i":"i", "j":"j", "k":"k", "l":"l", "m":"m", "n":"n",
+        "o":"o", "p":"p", "q":"q", "r":"r", "s":"s", "t":"t", "u":"u",
+        "v":"v", "w":"w", "x":"x", "y":"y", "z":"z"} 
+
+#mydear
+fiveBkey = "qnvqao"
+
+#dearest
+fiveBkey = "htsdape"
 
 
-
-
-
-print(ciphers.fourB)
-print(solve.substitution(ciphers.fourB,fourBkey))
-
-#solve.substitution(ciphers.twoB,twoBkey)
-
+#print(freq.freqLetters(ciphers.fiveB))
+print(solve.vigenere(ciphers.fiveB,fiveBkey))
 
 
 
