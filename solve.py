@@ -64,6 +64,8 @@ def findKey(cipher,type,key):
         return key
 
 
+    
+
 # requires alphabet key (function findkey is to help but not very helpful) trial and error guessing time
 def substitution(cipher,k):
     again = True
@@ -99,11 +101,8 @@ def substitution(cipher,k):
 
 # substitution when the spaces are jumbled
 def sSubstitution(cipher,k):
-    print(freq.freqWords(cipher))
-    print("\n")
     print(freq.freqLetters(cipher))
     key = k
-    print("KEY: ",key)
     originalDiff = freq.dictValue(cipher)
     for char in range(len(cipher)):
         if cipher[char] != " ":
