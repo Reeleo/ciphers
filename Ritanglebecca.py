@@ -314,5 +314,19 @@ for i in range(len(totals)):
 # ---------- Question 7 --------- #
 
 
+# ---------- Question 13 --------- #
+#JOY
+# ---------- Question 13 --------- #
 
 
+# ---------- Question 14 --------- #
+grid = []
+for i in range(45):
+    row = []
+    for j in range(45):
+        row.append(j)
+grid.append(row)
+print(grid)
+
+
+# ---------- Question 147 --------- #
