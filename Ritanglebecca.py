@@ -320,13 +320,34 @@ for i in range(len(totals)):
 
 
 # ---------- Question 14 --------- #
-grid = []
-for i in range(45):
-    row = []
-    for j in range(45):
-        row.append(j)
-grid.append(row)
-print(grid)
+
+# w = 0
+# h = 0
+# count = 0
+# for column in range(1,5):
+#     for row in range(1,5):
+#         for height in range(1,6-row):
+#             for width in range(1,6-column):
+#                 w = width
+#                 h = height
+#                 if w > h:
+#                     count += 1
+# print(count)
+# count = 35
+
+w = 0
+h = 0
+count = 0
+for column in range(1,46):
+    for row in range(1,46):
+        for height in range(1,47-row):
+            for width in range(1,47-column):
+                w = width
+                h = height
+                if w > h:
+                    count += 1
+print(count)
+
 
 
 # ---------- Question 147 --------- #
