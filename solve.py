@@ -113,6 +113,7 @@ def sSubstitution(cipher,k):
     print(convert.arrayToString(cipher,False))
     print("\n")
     print(freq.freqLetters(cipher))
+    return cipher
 
 
 
