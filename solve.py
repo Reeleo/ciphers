@@ -127,16 +127,17 @@ def vigenere(cipher,k):
     for j in range(len(cipher)):
         if cipher[j] != " ":
             ascii = ord(cipher[j])
-            if ascii+key[pointer] >= 123:
-                diff = ascii+key[pointer] - 122
-                ascii = 96 + diff
+            if ascii-key[pointer] < 97:
+                diff = 97-ascii+key[pointer]
+                ascii = 123-diff
             else:
-                ascii += key[pointer]
+                ascii -= key[pointer]
             cipher[j] = chr(ascii)
             pointer += 1
-            if pointer >= len(key):
+            if pointer == len(key):
                 pointer = 0
-    print(convert.arrayToString(cipher,True)[:10])
+    # print(convert.arrayToString(cipher,True)[:10])
+    print(convert.arrayToString(cipher,True))
 
 # vigenere but auto key (is made from the plain/cipher? text)
 def vAutokey(cipher):
