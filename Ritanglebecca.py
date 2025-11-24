@@ -335,19 +335,44 @@ for i in range(len(totals)):
 # print(count)
 # count = 35
 
-w = 0
-h = 0
-count = 0
-for column in range(1,46):
-    for row in range(1,46):
-        for height in range(1,47-row):
-            for width in range(1,47-column):
-                w = width
-                h = height
-                if w > h:
-                    count += 1
-print(count)
+# w = 0
+# h = 0
+# count = 0
+# for column in range(1,46):
+#     for row in range(1,46):
+#         for height in range(1,47-row):
+#             for width in range(1,47-column):
+#                 w = width
+#                 h = height
+#                 if w > h:
+#                     count += 1
+# print(count)
 
 
 
-# ---------- Question 147 --------- #
+# ---------- Question 14 --------- #
+
+
+# ---------- Question 16 --------- #
+
+ans = []
+for a in range(2,8):
+    for x in range(2,8):
+        for y in range(2,8):
+            for b in range(2,8):
+                for m in range(2,8):
+                    for n in range(2,8):
+                        valid = True
+                        values = [a,x,y,b,m,n]
+                        for i in range(len(values)):
+                            for j in range(i+1,len(values)):
+                                if values[i] == values[j]:
+                                    valid = False
+                        if valid:     
+                            print(a,x,y,b,m,n)
+                            d1 = a/(1 - (y/a)**(1/(x-1)))
+                            d2 = b/(1 - (n/b)**(1/(m-1)))
+                            d = abs(d1-d2)
+                            ans.append(round(d,4))
+print(sorted(ans))
+# largest = 214.2889
