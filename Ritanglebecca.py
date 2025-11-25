@@ -373,6 +373,6 @@ for a in range(2,8):
                             d1 = a/(1 - (y/a)**(1/(x-1)))
                             d2 = b/(1 - (n/b)**(1/(m-1)))
                             d = abs(d1-d2)
-                            ans.append(round(d,4))
+                            ans.append([round(d,4),values])
 print(sorted(ans))
-# largest = 214.2889
+# 214.2889, [2, 4, 3, 6, 7, 5], 214.2889, [6, 7, 5, 2, 4, 3]
