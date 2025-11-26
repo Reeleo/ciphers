@@ -376,3 +376,31 @@ for a in range(2,8):
                                 ans.append([round(d,4),values])
 print(sorted(ans))
 # 186.8117, [6, 7, 5, 4, 3, 2] or [4, 3, 2, 6, 7, 5]
+
+# ---------- Question 16 --------- #
+
+
+# ---------- Question 17 --------- #
+
+import math
+class Triangle:
+    def __init__(self,p,q,r):
+        k = 180/(p+q+r)
+        self.P = k*p
+        self.Q = k*q
+        self.R = k*r
+        print(self.P,self.Q,self.R)
+ 
+class Circle:
+    def __init__(self):
+        self.r = 1
+        self.centre = [0,0]
+
+
+circle = Circle()
+for p in range(1,7):
+    for q in range(1,7):
+        for r in range(1,7):
+            triangle = Triangle(p,q,r)
+
+# ---------- Question 17 --------- #
