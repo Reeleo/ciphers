@@ -369,10 +369,10 @@ for a in range(2,8):
                                 if values[i] == values[j]:
                                     valid = False
                         if valid:     
-                            print(a,x,y,b,m,n)
                             d1 = a/(1 - (y/a)**(1/(x-1)))
                             d2 = b/(1 - (n/b)**(1/(m-1)))
                             d = abs(d1-d2)
-                            ans.append([round(d,4),values])
+                            if (y/a)**(1/(x-1)) < 1 and (n/b)**(1/(m-1)) < 1:
+                                ans.append([round(d,4),values])
 print(sorted(ans))
-# 214.2889, [2, 4, 3, 6, 7, 5], 214.2889, [6, 7, 5, 2, 4, 3]
+# 186.8117, [6, 7, 5, 4, 3, 2] or [4, 3, 2, 6, 7, 5]
