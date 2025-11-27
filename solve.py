@@ -116,6 +116,35 @@ def sSubstitution(cipher,k):
     return cipher
 
 
+def vigFreq(cipher,length):
+    cipher = convert.stringToArray(cipher)
+    count = 0
+    popCount = 0
+    spaceCount = 0 
+    for i in range(len(cipher)):
+        if cipher[i] == " ":
+            spaceCount += 1
+    while popCount < spaceCount:
+        if cipher[count] == " ":
+            cipher.pop(count)
+            popCount += 1
+        else:
+            count += 1
+    
+    shifts = []
+    for j in range(length):
+        count = 0
+        every = []
+        for k in range(len(cipher)):
+            if count % length == j:
+                every.append(cipher[k])
+            count += 1
+        shifts.append(reverseCeasar(every))
+        print(j)
+    print(shifts)
+
+
+    
 
 # the vigenere chart shift (not done in challenge yet)
 def vigenere(cipher,k):
@@ -185,7 +214,7 @@ def transposition(cipher,key):
 
 
 # finds the most likely shift and solves
-def ceasar(cipher):
+def ceasar(cipher): 
     diffs = []
     for shift in range(26):
         for i in range(len(cipher)):
@@ -197,13 +226,37 @@ def ceasar(cipher):
         shifted = []
         for j in range(len(cipher)):
             shifted.append(cipher[j])
-        print("\n")
-        print(convert.arrayToString(shifted,True),freq.dictValue(shifted),shift)
+        #print("\n")
+        #print(convert.arrayToString(shifted,True),freq.dictValue(shifted),shift)
         diffs.append([shifted,freq.dictValue(cipher),shift])
     pointer = 0
     for j in range(len(diffs)):
         if diffs[j][1] > diffs[pointer][1]:
             pointer = j
     diffs[pointer][0] = convert.arrayToString(diffs[pointer][0],True)
-    print("\n")
-    print(diffs[pointer])
+    #print("\n")
+    #print(diffs[pointer])
+    return diffs[pointer][2]
+
+
+# def reverseCeasar(cipher):
+#     diffs = []
+#     for shift in range(26):
+#         for i in range(len(cipher)):
+#             if cipher[i] != " ":
+#                 ascii = ord(cipher[i])
+#                 if ascii-1 <= 96:
+#                     ascii = 123
+#                 cipher[i] = chr(ascii+1)
+#         shifted = []
+#         for j in range(len(cipher)):
+#             shifted.append(cipher[j])
+#             diffs.append([shifted,freq.dictValue(cipher),shift])
+#     pointer = 0
+#     for j in range(len(diffs)):
+#         if diffs[j][1] > diffs[pointer][1]:
+#             pointer = j
+#     diffs[pointer][0] = convert.arrayToString(diffs[pointer][0],True)
+#     #print("\n")
+#     #print(diffs[pointer])
+#     return diffs[pointer][2]
