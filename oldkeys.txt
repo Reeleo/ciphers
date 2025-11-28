@@ -54,3 +54,5 @@ sixAKey2 = {"a":"c", "b":"o", "c":"a", "d":"p", "e":"f", "f":"q", "g":"r",
 
 sixAKey1 = [0,3,2,1]
 sixBkey = "newyork"
+
+sevenAkey = "senator"

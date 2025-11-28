@@ -3,13 +3,38 @@ import solve
 import freq
  
 
+#[10, 23, 23, 26, 26, 24, 23]
+sevenBkey = "zkjniu" # mydear
+sevenBkey = "zkjniumkt" # mydearest
+sevenBkey = "iemaetx" # dearest
+sevenBkey = "zr" # mr
 
-#[7, 21, 12, 25, 6, 11, 8]
-#[19, 5, 14, 1, 20, 15, 18]
-sevenAkey = "senator"
+sevenBkey = "friend"
 
-print(solve.vigFreq(ciphers.sevenA,7))
-print(solve.vigenere(ciphers.sevenA,sevenAkey))
+'''
+NAMES
+clara
+ellen
+charles babbage
+charles dickens
+general grenville m dodge
+rokesmith
+molin
+lord derby
+frederick douglass
+thaddeus
+charles
+
+senator grimes
+mr johnson
+'''
+
+# need to look at playfair cipher
+
+
+print("start")
+#print(solve.vigFreq(ciphers.sevenB,5))
+print(solve.vigenere(ciphers.sevenB,sevenBkey))
 
 
 #print(sorted(freq.FREQ.items(), key=lambda x:x[1], reverse=True))

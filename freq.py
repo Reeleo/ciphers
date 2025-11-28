@@ -21,7 +21,7 @@ def dictValue(txt):
     for j in newdict:
         if newdict[j] > 0:
             diff += abs(FREQ[j] - newdict[j])
-    return round(diff,2)
+    return round(diff,5)
 
 # freq of letters for shift and substitution
 def freqLetters(txt):

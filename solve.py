@@ -139,9 +139,34 @@ def vigFreq(cipher,length):
             if count % length == j:
                 every.append(cipher[k])
             count += 1
-        shifts.append(reverseCeasar(every))
+        shifts.append(26-ceasar(every))
         print(j)
     print(shifts)
+
+
+def allVig(cipher):
+    freqValues = []
+    prints = []
+    for a in range(25):
+        for b in range(25):
+            for c in range(25):
+                for d in range(25):
+                    for e in range(25):
+                        k = chr(e+97)+chr(d+97)+chr(c+97)+chr(b+97)+chr(a+97)
+                        #print(k)
+                        value = freq.dictValue(vigenere(cipher,k))
+
+                        if value > 99.28552:
+                            prints.append(k,value,a,b,c,d,e)
+                            print(k,value)
+
+                        if d == 0 and e == 0:
+                            print(a,b,c,d,e)
+
+    print(prints)
+
+
+                         
 
 
     
@@ -151,7 +176,7 @@ def vigenere(cipher,k):
     key = []
     for i in range(len(k)):
         key.append(ord(k[i]) - 97)
-    print(key)
+    # print(key)
     pointer = 0
     for j in range(len(cipher)):
         if cipher[j] != " ":
@@ -166,7 +191,8 @@ def vigenere(cipher,k):
             if pointer == len(key):
                 pointer = 0
     # print(convert.arrayToString(cipher,True)[:10])
-    print(convert.arrayToString(cipher,True))
+    # print(convert.arrayToString(cipher,True)[:100])
+    return convert.arrayToString(cipher,True)
 
 # vigenere but auto key (is made from the plain/cipher? text)
 def vAutokey(cipher):
@@ -226,8 +252,8 @@ def ceasar(cipher):
         shifted = []
         for j in range(len(cipher)):
             shifted.append(cipher[j])
-        #print("\n")
-        #print(convert.arrayToString(shifted,True),freq.dictValue(shifted),shift)
+        print("\n")
+        print(convert.arrayToString(shifted,True),freq.dictValue(shifted),shift)
         diffs.append([shifted,freq.dictValue(cipher),shift])
     pointer = 0
     for j in range(len(diffs)):
@@ -235,28 +261,15 @@ def ceasar(cipher):
             pointer = j
     diffs[pointer][0] = convert.arrayToString(diffs[pointer][0],True)
     #print("\n")
-    #print(diffs[pointer])
+    print(diffs[pointer])
     return diffs[pointer][2]
 
 
-# def reverseCeasar(cipher):
-#     diffs = []
-#     for shift in range(26):
-#         for i in range(len(cipher)):
-#             if cipher[i] != " ":
-#                 ascii = ord(cipher[i])
-#                 if ascii-1 <= 96:
-#                     ascii = 123
-#                 cipher[i] = chr(ascii+1)
-#         shifted = []
-#         for j in range(len(cipher)):
-#             shifted.append(cipher[j])
-#             diffs.append([shifted,freq.dictValue(cipher),shift])
-#     pointer = 0
-#     for j in range(len(diffs)):
-#         if diffs[j][1] > diffs[pointer][1]:
-#             pointer = j
-#     diffs[pointer][0] = convert.arrayToString(diffs[pointer][0],True)
-#     #print("\n")
-#     #print(diffs[pointer])
-#     return diffs[pointer][2]
+
+def reverse(og):
+    reverse = []
+    og = convert.stringToArray(og)
+    for i in range(len(og)):
+        reverse.insert(0,og[i])
+    return reverse
+
